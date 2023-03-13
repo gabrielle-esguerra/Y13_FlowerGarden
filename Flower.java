@@ -96,6 +96,7 @@ public class Flower
      */
     public void draw() {
         final int STEMWIDTH = 2;
+        final int WAITMS = 500;
         
         // Stem
         UI.setColor(Color.green);                       // set the stem colour
@@ -105,7 +106,7 @@ public class Flower
         // Flower
         UI.setColor(this.color);                       // set the flower colour
         UI.fillOval(left,top, flowerSize, flowerSize); // draw flower
-        UI.sleep(500);                                 // wait
+        UI.sleep(WAITMS);                              // wait
         
     }
     
@@ -113,16 +114,18 @@ public class Flower
      * Erase a rectangle around the current instance
      */
     public void erase() {
-        UI.eraseRect(left, top, flowerSize+1, bottom);
+        final int BUFFFER = 1;
+        UI.eraseRect(left, top, flowerSize+BUFFFER, bottom+BUFFFER);
     }
     
     /**
      * Make the flower grow
      */
     public void grow() {
+        final int GROWSIZE = 10;
         this.erase();           // erase flower
-        this.flowerY -= 10;     // increase height
-        this.flowerSize += 10;  // increase size for the bulb
+        this.flowerY -= GROWSIZE;     // increase height
+        this.flowerSize += GROWSIZE;  // increase size for the bulb
         
         //set the new position
         this.setTop();
